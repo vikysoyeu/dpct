@@ -8,6 +8,7 @@
     "dev:web": "pnpm --filter @rescue/web dev",
     "dev:api": "pnpm --filter @rescue/api dev",
     "build": "pnpm -r --if-present build",
+    "start": "echo 'Multi-app monorepo'",
     "lint": "pnpm -r --if-present lint",
     "typecheck": "pnpm -r typecheck"
   }
