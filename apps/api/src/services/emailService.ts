@@ -240,7 +240,7 @@ async function sendViaBrevo(
 
   const payload = await response.json().catch(() => null) as { messageId?: string, message?: string } | null;
   if (!response.ok) {
-    throw new Error(payload?.message || \`Brevo API \${response.status} \${response.statusText}\`);
+    throw new Error(payload?.message || `Brevo API ${response.status} ${response.statusText}`);
   }
   return { messageId: payload?.messageId ?? null };
 }
