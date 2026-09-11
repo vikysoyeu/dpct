@@ -45,7 +45,7 @@ type SendManualEmailInput = Omit<SendAutomaticEmailInput, "idempotencyKey" | "va
   attachments?: EmailAttachment[];
 };
 
-type EmailProvider = "resend" | "smtp" | "gmail";
+type EmailProvider = "resend" | "smtp" | "gmail" | "brevo";
 
 type EmailAttachment = {
   filename: string;
@@ -89,7 +89,7 @@ function textToHtml(text: string) {
 
 function activeEmailProvider(): EmailProvider {
   const provider = (process.env.EMAIL_PROVIDER ?? "resend").trim().toLowerCase();
-  if (provider === "smtp" || provider === "gmail") return provider;
+  if (provider === "smtp" || provider === "gmail" || provider === "brevo") return provider;
   return "resend";
 }
 
@@ -199,6 +199,50 @@ async function sendViaResend(
     throw new Error(resendErrorMessage(payload, response.status, response.statusText));
   }
   return { messageId: payload?.id ?? null };
+}
+
+async function sendViaBrevo(
+  template: EmailTemplateRecord,
+  recipientEmail: string,
+  rendered: { subject: string; html: string; text: string | null },
+  idempotencyKey?: string,
+  attachments: EmailAttachment[] = [],
+) {
+  const apiKey = process.env.BREVO_API_KEY;
+  const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER;
+  const fromName = template.fromName ?? process.env.SMTP_FROM_NAME ?? "Dieu phoi cuu tro";
+
+  if (!apiKey || !fromEmail) {
+    return { skipped: true, errorMessage: "Missing BREVO_API_KEY or SMTP_FROM_EMAIL." };
+  }
+
+  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "api-key": apiKey,
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    body: JSON.stringify({
+      sender: { name: fromName, email: fromEmail },
+      to: [{ email: recipientEmail }],
+      subject: rendered.subject,
+      htmlContent: rendered.html,
+      textContent: rendered.text ?? undefined,
+      replyTo: template.replyTo ? { email: template.replyTo } : undefined,
+      attachment: attachments.length > 0 ? attachments.map((att) => ({
+        name: att.filename,
+        content: att.contentBase64,
+      })) : undefined,
+      headers: idempotencyKey ? { "Idempotency-Key": idempotencyKey } : undefined,
+    }),
+  });
+
+  const payload = await response.json().catch(() => null) as { messageId?: string, message?: string } | null;
+  if (!response.ok) {
+    throw new Error(payload?.message || \`Brevo API \${response.status} \${response.statusText}\`);
+  }
+  return { messageId: payload?.messageId ?? null };
 }
 
 async function findTemplate(fastify: FastifyInstance, trigger: EmailTrigger) {
@@ -311,6 +355,8 @@ export async function sendAutomaticEmail(fastify: FastifyInstance, input: SendAu
   try {
     const result = provider === "resend"
       ? await sendViaResend(template, recipientEmail, rendered, input.idempotencyKey)
+      : provider === "brevo"
+      ? await sendViaBrevo(template, recipientEmail, rendered, input.idempotencyKey)
       : await sendViaSmtp(template, recipientEmail, rendered);
 
     if (result.skipped) {
@@ -354,6 +400,8 @@ export async function sendManualEmail(fastify: FastifyInstance, input: SendManua
   try {
     const result = provider === "resend"
       ? await sendViaResend(template, recipientEmail, rendered, undefined, attachments)
+      : provider === "brevo"
+      ? await sendViaBrevo(template, recipientEmail, rendered, undefined, attachments)
       : await sendViaSmtp(template, recipientEmail, rendered, attachments);
 
     if (result.skipped) {
