@@ -1,0 +1,616 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  VICTIM
+  VOLUNTEER
+  COORDINATOR
+  ADMIN
+  ADMIN_TNV
+  ADMIN_YCCT
+  ADMIN_KHO
+}
+
+enum LocationType {
+  STAGING_AREA
+  VICTIM_AREA
+  TRANSIT_POINT
+  URGENT_NEED
+  NEED_POINT
+  BLOCKED_ROAD
+  FOOD_SUPPORT
+  REST_STOP
+}
+
+enum LocationStatus {
+  PENDING
+  ACTIVE
+  DONE
+  EXPIRED
+}
+
+enum NeedCategory {
+  MANPOWER
+  FOOD
+  MEDICINE
+  EQUIPMENT
+  VEHICLE
+  OTHER
+}
+
+enum NeedStatus {
+  UNMET
+  PARTIAL
+  MET
+}
+
+enum VolunteerStatus {
+  AVAILABLE
+  ON_MISSION
+  RESTING
+}
+
+enum SystemStatus {
+  HOAT_DONG
+  TAM_DUNG
+  KHOA
+  CHO_DUYET
+}
+
+enum TeamMemberRole {
+  DOI_TRUONG
+  DOI_PHO
+  THANH_VIEN
+  CONG_TAC_VIEN
+}
+
+enum PriorityLevel {
+  THAP
+  TRUNG_BINH
+  CAO
+  KHAN_CAP
+}
+
+enum RequestStatus {
+  CHO_TIEP_NHAN
+  DANG_THUC_HIEN
+  HOAN_THANH
+  HUY_BO
+}
+
+enum MissionStatus {
+  CHO_TIEP_NHAN
+  DANG_TUYEN
+  DA_DU_DOI
+  DA_DU_HANG
+  SAN_SANG
+  DANG_THUC_HIEN
+  HOAN_THANH
+  HUY_BO
+}
+
+enum VolunteerRequestStatus {
+  CHO_TIEP_NHAN
+  DA_TIEP_NHAN
+  DANG_XU_LY
+  HOAN_THANH
+  HUY_BO
+}
+
+enum DonorGoodsStatus {
+  CHO_TIEP_NHAN
+  DANG_XU_LY
+  HOAN_THANH
+  HUY_BO
+}
+
+enum TransactionType {
+  THU
+  CHI
+}
+
+enum TransactionStatus {
+  THANH_CONG
+  THAT_BAI
+  CHO_DOI_SOAT
+}
+
+enum TransactionMethod {
+  BANK_TRANSFER
+  CASH
+}
+
+enum NotificationRecipientKind {
+  USER
+  ADMIN
+}
+
+enum EmailTemplateTrigger {
+  RESCUE_REQUEST_SUBMITTED
+  RESCUE_REQUEST_APPROVED
+  SPONSORSHIP_SUBMITTED
+  SPONSORSHIP_APPROVED
+  VOLUNTEER_JOIN_REQUEST_SUBMITTED
+  VOLUNTEER_JOIN_REQUEST_APPROVED
+  VOLUNTEER_ACCOUNT_APPROVED
+  VOLUNTEER_PASSWORD_RESET
+  DONATION_CONFIRMED
+}
+
+enum EmailDeliveryStatus {
+  PENDING
+  SENT
+  FAILED
+  SKIPPED
+}
+
+// ─── Models ───────────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(uuid())
+  username     String?  @unique
+  passwordHash String?
+  email        String?  @unique
+  role         UserRole @default(VICTIM)
+  name         String
+  phone        String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  reportedLocations     Location[]         @relation("ReportedBy")
+  verifiedLocations     Location[]         @relation("VerifiedBy")
+  inventoryUpdates      InventoryItem[]    @relation("UpdatedBy")
+  locationUpdates       LocationUpdate[]
+  rescueRequests        RescueRequest[]    @relation("RescueRequestSubmittedBy")
+  roleLinks             UserRoleLink[]
+  volunteerProfile      Volunteer?
+  approvedTransactions  FundTransaction[]  @relation("ApprovedBy")
+  notifications         Notification[]     @relation("UserNotifications")
+  emailLogs             EmailLog[]         @relation("EmailRecipientUser")
+  passwordResetCodes    VolunteerPasswordResetCode[]
+}
+
+model Volunteer {
+  id                    String          @id @default(uuid())
+  userId                String          @unique
+  status                VolunteerStatus @default(AVAILABLE)
+  accountStatus         SystemStatus    @default(HOAT_DONG)
+  dateOfBirth           DateTime?
+  gender                String?
+  address               String?
+  city                  String?
+  ward                  String?
+  skills                String[]        @default([])
+  vehicleType           String?
+  availability          String?
+  experience            String?
+  emergencyContactName  String?
+  emergencyContactPhone String?
+  teamId                String?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  user                  User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team                  VolunteerTeam?   @relation(fields: [teamId], references: [id])
+  volunteerRequests     VolunteerRequest[]
+  rescueTeamMemberships RescueTeamMember[]
+
+  @@index([accountStatus])
+  @@index([status])
+  @@index([teamId])
+}
+
+model VolunteerTeam {
+  id          String       @id @default(uuid())
+  name        String
+  city        String?
+  ward        String?
+  description String?
+  status      SystemStatus @default(HOAT_DONG)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  volunteers Volunteer[]
+}
+
+model Location {
+  id          String         @id @default(uuid())
+  type        LocationType
+  status      LocationStatus @default(PENDING)
+  priority    PriorityLevel  @default(TRUNG_BINH)
+  name        String
+  description String?
+  province    String?
+  ward        String?
+  address     String?
+  lat         Float
+  lng         Float
+  urgency     Int            @default(1)
+  expiresAt   DateTime?
+
+  reportedById String?
+  reportedBy   User?   @relation("ReportedBy", fields: [reportedById], references: [id])
+  verifiedById String?
+  verifiedBy   User?   @relation("VerifiedBy", fields: [verifiedById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  needs           Need[]
+  inventory       InventoryItem[]
+  locationUpdates LocationUpdate[]
+  rescueRequests  RescueRequest[]
+  missions        Mission[]
+
+  @@index([province])
+  @@index([ward])
+}
+
+model Need {
+  id         String        @id @default(uuid())
+  locationId String
+  location   Location      @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  category   NeedCategory
+  item       String
+  quantity   Int
+  unit       String
+  status     NeedStatus    @default(UNMET)
+  priority   PriorityLevel @default(TRUNG_BINH)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model InventoryItem {
+  id         String   @id @default(uuid())
+  locationId String
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  item       String
+  quantity   Int
+  unit       String
+
+  lastUpdatedById String?
+  lastUpdatedBy   User?   @relation("UpdatedBy", fields: [lastUpdatedById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Role {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String?
+
+  users UserRoleLink[]
+}
+
+model UserRoleLink {
+  userId     String
+  roleId     Int
+  assignedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+}
+
+model LocationUpdate {
+  id         String   @id @default(uuid())
+  locationId String
+  userId     String?
+  imageUrl   String?
+  content    String?
+  createdAt  DateTime @default(now())
+
+  location Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  user     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([locationId])
+}
+
+model RescueRequest {
+  id             String        @id @default(uuid())
+  code           String        @unique @default(dbgenerated("generate_rescue_request_code()")) @db.VarChar(5)
+  locationId     String
+  submittedById  String?
+  name           String
+  content        String?
+  priority       PriorityLevel @default(TRUNG_BINH)
+  status         RequestStatus @default(CHO_TIEP_NHAN)
+  submittedAt    DateTime      @default(now())
+  requesterName  String?
+  requesterPhone String?
+  requesterEmail String?
+  requesterTitle String?
+
+  location          Location            @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  submittedBy       User?               @relation("RescueRequestSubmittedBy", fields: [submittedById], references: [id], onDelete: SetNull)
+  volunteerRequests VolunteerRequest[]
+  missions          Mission[]
+  transactions      FundTransaction[]
+  emailLogs         EmailLog[]
+  requestItems      RescueRequestItem[]
+}
+
+model VolunteerRequest {
+  id          String        @id @default(uuid())
+  volunteerId String
+  requestId   String
+  status      VolunteerRequestStatus @default(CHO_TIEP_NHAN)
+  note        String?
+  submittedAt DateTime      @default(now())
+
+  volunteer Volunteer     @relation(fields: [volunteerId], references: [id], onDelete: Cascade)
+  request   RescueRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  emailLogs EmailLog[]
+
+  @@unique([volunteerId, requestId])
+}
+
+model Mission {
+  id                         String        @id @default(uuid())
+  locationId                 String
+  requestId                  String?
+  name                       String
+  missionType                String?
+  priority                   PriorityLevel @default(TRUNG_BINH)
+  status                     MissionStatus @default(CHO_TIEP_NHAN)
+  startedAt                  DateTime?
+  endedAt                    DateTime?
+  itemAssignmentsInitialized Boolean       @default(false)
+
+  location        Location                @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  request         RescueRequest?          @relation(fields: [requestId], references: [id], onDelete: SetNull)
+  rescueTeams     RescueTeam[]
+  transportations Transportation[]
+  itemAssignments MissionItemAssignment[]
+}
+
+model Transportation {
+  id           String   @id @default(uuid())
+  missionId    String
+  vehicleType  String
+  vehiclePlate String
+  driverName   String
+  driverPhone  String
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  mission Mission @relation(fields: [missionId], references: [id], onDelete: Cascade)
+}
+
+model RescueTeam {
+  id        String       @id @default(uuid())
+  missionId String?
+  name      String
+  type      String?
+  status    SystemStatus @default(HOAT_DONG)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  mission Mission?           @relation(fields: [missionId], references: [id], onDelete: SetNull)
+  members RescueTeamMember[]
+}
+
+model RescueTeamMember {
+  userId   String
+  teamId   String
+  role     TeamMemberRole @default(THANH_VIEN)
+  joinedAt DateTime       @default(now())
+
+  user Volunteer  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team RescueTeam @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@id([userId, teamId])
+}
+
+model ItemCategory {
+  id        String   @id @default(uuid())
+  name      String
+  groupName String?
+  unit      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  requestItems       RescueRequestItem[]
+  donorGoods         DonorGoods[]
+  missionAssignments MissionItemAssignment[]
+}
+
+model RescueRequestItem {
+  rescueRequestId String
+  itemCategoryId  String
+  quantity        Int    @default(0)
+
+  rescueRequest RescueRequest @relation(fields: [rescueRequestId], references: [id], onDelete: Cascade)
+  itemCategory  ItemCategory  @relation(fields: [itemCategoryId], references: [id], onDelete: Cascade)
+
+  @@id([rescueRequestId, itemCategoryId])
+  @@map("RescueRequestItem")
+}
+
+model Donor {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String?
+  email     String?
+  address   String?
+  type      String?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  goods        DonorGoods[]
+  transactions FundTransaction[]
+  emailLogs    EmailLog[]
+}
+
+model DonorGoods {
+  donorId        String
+  itemCategoryId String
+  quantity       Int
+  unit           String
+  status         DonorGoodsStatus @default(HOAN_THANH)
+
+  donor        Donor        @relation(fields: [donorId], references: [id], onDelete: Cascade)
+  itemCategory ItemCategory @relation(fields: [itemCategoryId], references: [id], onDelete: Cascade)
+
+  @@id([donorId, itemCategoryId])
+}
+
+model MissionItemAssignment {
+  missionId      String
+  itemCategoryId String
+  quantity       Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  mission      Mission      @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  itemCategory ItemCategory @relation(fields: [itemCategoryId], references: [id], onDelete: Cascade)
+
+  @@id([missionId, itemCategoryId])
+  @@index([itemCategoryId])
+}
+
+model FundTransaction {
+  id           String            @id @default(uuid())
+  sepayId      String?           @unique @db.VarChar(100)
+  donorId      String?
+  approvedById String?
+  requestId    String?
+  donorName    String?           @db.VarChar(100)
+  donorPhone   String?           @db.VarChar(150)
+  donorEmail   String?           @db.VarChar(150)
+  type         TransactionType
+  method       TransactionMethod @default(BANK_TRANSFER)
+  amount       BigInt            @default(0)
+  transactedAt DateTime          @default(now())
+  content      String?
+  status       TransactionStatus @default(THANH_CONG)
+  notes        String?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  donor      Donor?         @relation(fields: [donorId], references: [id], onDelete: SetNull)
+  approvedBy User?          @relation("ApprovedBy", fields: [approvedById], references: [id], onDelete: SetNull)
+  request    RescueRequest? @relation(fields: [requestId], references: [id], onDelete: SetNull)
+  emailLogs  EmailLog[]
+}
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String
+  displayName  String
+  role         UserRole @default(ADMIN)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  notifications Notification[] @relation("AdminNotifications")
+}
+
+model Notification {
+  id            String                    @id @default(uuid())
+  recipientKind NotificationRecipientKind
+  userId        String?
+  adminUserId   String?
+  type          String
+  title         String
+  message       String
+  link          String?
+  metadata      Json?
+  readAt        DateTime?
+  createdAt     DateTime                  @default(now())
+
+  user      User?      @relation("UserNotifications", fields: [userId], references: [id], onDelete: Cascade)
+  adminUser AdminUser? @relation("AdminNotifications", fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@index([recipientKind, userId, readAt, createdAt])
+  @@index([recipientKind, adminUserId, readAt, createdAt])
+  @@index([type, createdAt])
+}
+
+model EmailTemplate {
+  id          String                @id @default(uuid())
+  slug        String                @unique
+  trigger     EmailTemplateTrigger? @unique
+  name        String
+  description String?
+  subject     String
+  htmlBody    String
+  textBody    String?
+  fromName    String?
+  replyTo     String?
+  enabled     Boolean               @default(true)
+  variables   String[]              @default([])
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+
+  logs EmailLog[]
+
+  @@index([enabled, trigger])
+}
+
+model EmailLog {
+  id                 String               @id @default(uuid())
+  templateId         String?
+  trigger            EmailTemplateTrigger
+  status             EmailDeliveryStatus  @default(PENDING)
+  recipientEmail     String
+  recipientName      String?
+  subject            String
+  htmlBody           String?
+  textBody           String?
+  resendEmailId      String?
+  idempotencyKey     String?              @unique
+  errorMessage       String?
+  metadata           Json?
+  recipientUserId    String?
+  donorId            String?
+  rescueRequestId    String?
+  volunteerRequestId String?
+  fundTransactionId  String?
+  sentAt             DateTime?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+
+  template         EmailTemplate?    @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  recipientUser    User?             @relation("EmailRecipientUser", fields: [recipientUserId], references: [id], onDelete: SetNull)
+  donor            Donor?            @relation(fields: [donorId], references: [id], onDelete: SetNull)
+  rescueRequest    RescueRequest?    @relation(fields: [rescueRequestId], references: [id], onDelete: SetNull)
+  volunteerRequest VolunteerRequest? @relation(fields: [volunteerRequestId], references: [id], onDelete: SetNull)
+  fundTransaction  FundTransaction?  @relation(fields: [fundTransactionId], references: [id], onDelete: SetNull)
+
+  @@index([trigger, status, createdAt])
+  @@index([recipientEmail, createdAt])
+  @@index([rescueRequestId])
+  @@index([volunteerRequestId])
+  @@index([fundTransactionId])
+}
+
+model VolunteerPasswordResetCode {
+  id        String    @id @default(uuid())
+  userId    String
+  email     String
+  codeHash  String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([email, codeHash])
+  @@index([userId, usedAt, expiresAt])
+}

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trung tâm Nguồn lực &amp; Tình nguyện viên | DPCT</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Public+Sans:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#cbe7f5",
+                        "primary-fixed": "#d7e2ff",
+                        "background": "#f8f9fa",
+                        "secondary": "#48626e",
+                        "surface-variant": "#e1e3e4",
+                        "on-surface-variant": "#424752",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-container": "#b1121b",
+                        "tertiary": "#88000e",
+                        "on-primary-fixed": "#001a40",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-tint": "#115cb9",
+                        "on-surface": "#191c1d",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3ac",
+                        "surface-container": "#edeeef",
+                        "surface-dim": "#d9dadb",
+                        "surface": "#f8f9fa",
+                        "on-primary-fixed-variant": "#004491",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "secondary-fixed-dim": "#afcbd8",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#930010",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#0056b3",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed": "#cbe7f5",
+                        "on-background": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#acc7ff",
+                        "on-tertiary-container": "#ffc0ba",
+                        "on-secondary-fixed-variant": "#304a55",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#acc7ff",
+                        "primary": "#003f87",
+                        "on-tertiary-fixed": "#410003",
+                        "tertiary-fixed": "#ffdad6",
+                        "on-secondary-container": "#4e6874",
+                        "on-secondary-fixed": "#021f29",
+                        "on-primary-container": "#bbd0ff",
+                        "outline-variant": "#c2c6d4",
+                        "outline": "#727784"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Public Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .command-gradient {
+            background: linear-gradient(135deg, #003f87 0%, #0056b3 100%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c2c6d4; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- SideNavBar -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col h-screen border-r-0 shadow-xl shadow-slate-200/50 z-50">
+<div class="p-6">
+<div class="text-lg font-extrabold uppercase tracking-widest text-blue-900 dark:text-white flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+<span>DPCT</span>
+</div>
+<div class="mt-1 text-slate-500 dark:text-slate-400 font-['Inter'] font-medium tracking-tight text-xs uppercase">Chỉ Huy Khẩn Cấp</div>
+</div>
+<nav class="flex-1 mt-4">
+<a class="flex items-center px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-200 hover:bg-slate-200/50 transition-colors duration-200 font-['Inter'] font-medium tracking-tight text-sm" href="#">
+<span class="material-symbols-outlined mr-3">map</span> Bản Đồ Điều Phối
+            </a>
+<a class="flex items-center px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-200 hover:bg-slate-200/50 transition-colors duration-200 font-['Inter'] font-medium tracking-tight text-sm" href="#">
+<span class="material-symbols-outlined mr-3">inventory_2</span> Logistics &amp; Nguồn Lực
+            </a>
+<a class="flex items-center px-6 py-3 text-blue-700 dark:text-blue-300 border-r-4 border-blue-700 dark:border-blue-400 bg-white dark:bg-slate-800 transition-transform font-['Inter'] font-medium tracking-tight text-sm translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3">groups</span> Trung Tâm Tình Nguyện
+            </a>
+<a class="flex items-center px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-200 hover:bg-slate-200/50 transition-colors duration-200 font-['Inter'] font-medium tracking-tight text-sm" href="#">
+<span class="material-symbols-outlined mr-3">info</span> Cổng Thông Tin An Toàn
+            </a>
+</nav>
+<div class="p-6 border-t border-slate-200/50">
+<button class="w-full command-gradient text-white py-3 rounded-xl font-bold text-sm tracking-wide shadow-lg mb-6 active:scale-95 transition-all">
+                Báo Cáo Khẩn Cấp
+            </button>
+<div class="space-y-4">
+<a class="flex items-center text-slate-500 text-sm font-medium hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">settings</span> Cấu Hình Hệ Thống
+                </a>
+<a class="flex items-center text-slate-500 text-sm font-medium hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">help_outline</span> Hỗ Trợ
+                </a>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-white/80 backdrop-blur-lg flex justify-between items-center px-8 w-full shadow-sm">
+<div class="flex items-center gap-8">
+<h1 class="text-xl font-black text-blue-900 font-headline tracking-tighter">Trung Tâm Điều Hành</h1>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm w-80 focus:ring-2 focus:ring-primary/20" placeholder="Tìm nguồn lực hoặc đội nhóm..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-6 font-['Public_Sans'] text-xs font-bold uppercase tracking-wider">
+<a class="text-slate-500 hover:text-blue-700 transition-all" href="#">Cảnh Báo</a>
+<a class="text-blue-800 border-b-2 border-blue-800 pb-1" href="#">Triển Khai</a>
+<a class="text-slate-500 hover:text-blue-700 transition-all" href="#">Kho Hàng</a>
+</div>
+<div class="flex items-center gap-4 ml-6 border-l pl-6 border-slate-200">
+<button class="relative hover:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-slate-600">notifications_active</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-2">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Professional portrait of a male emergency response coordinator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo0cM8z0JoPJaEMKbhoW-n5aQIvLJXeJhJeJnZqby6PhZrne7JSH2fg0fZ5bbebWzD8cPq-4DSX03ajdtjj7PbVMfacGuBxHajYMdPOTZdtlg56bJdCsPxD-o72BU_QLUo5xjvCKQ4aL_2Ydt3-jrv0bFD8YzAs_5P1VZBCq8T0tSKknVzC-WLeNPI8drNfdBAOpy2DpgweJ3YnAOfrkZcLTWGFagAdknrUwtDAy1a28ckXWxWLnKIc1xoJDZWhMRDpp86MGMyoEXb"/>
+<span class="material-symbols-outlined text-slate-600 cursor-pointer">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-16 min-h-screen">
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+<!-- Summary Stats (Keep original small cards, but remove hero) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-secondary-fixed text-on-secondary-fixed p-6 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-3xl opacity-80">local_shipping</span>
+<span class="font-label font-black text-xl">+12%</span>
+</div>
+<div class="mt-4">
+<div class="text-3xl font-black">248</div>
+<div class="text-xs font-bold uppercase tracking-widest opacity-70">Đơn Vị Vận Chuyển Đang Hoạt Động</div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]">local_shipping</span>
+</div>
+</div>
+<div class="bg-primary-fixed text-on-primary-fixed p-6 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-3xl opacity-80">volunteer_activism</span>
+<span class="font-label font-black text-xl">TRỰC TUYẾN</span>
+</div>
+<div class="mt-4">
+<div class="text-3xl font-black">1.402</div>
+<div class="text-xs font-bold uppercase tracking-widest opacity-70">Nhân Personnel &amp; Nhà Hảo Tâm</div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]">group</span>
+</div>
+</div>
+</div>
+<!-- Resource Matching Search & Filters Section -->
+<section class="space-y-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">search_check</span>
+<h3 class="text-xl font-black text-on-surface">Tìm Kiếm Nhu Cầu Cứu Trợ</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="space-y-1.5">
+<label class="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Tỉnh / Thành Phố</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 cursor-pointer">
+<option>TP. Hồ Chí Minh</option>
+<option>Đồng Nai</option>
+<option>Long An</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Quận / Huyện</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 cursor-pointer">
+<option>Quận 7</option>
+<option>Huyện Cần Giờ</option>
+<option>Quận Bình Tân</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Xã / Phường</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 cursor-pointer">
+<option>Phường Tân Phong</option>
+<option>Phường Phú Mỹ</option>
+<option>Phường Tân Hưng</option>
+</select>
+</div>
+<div class="flex items-end">
+<button class="w-full bg-primary text-white py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-sm">filter_alt</span>
+                                Lọc Kết Quả
+                            </button>
+</div>
+</div>
+</div>
+<!-- Search Results Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Request Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Mã yêu cầu: #RQ-4029</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span class="font-bold text-on-surface text-sm">Cần Thạnh, Cần Giờ</span>
+<a class="text-primary hover:opacity-70" href="#"><span class="material-symbols-outlined text-sm">map</span></a>
+</div>
+</div>
+<span class="bg-amber-100 text-amber-800 text-[10px] px-2 py-1 rounded font-black">ĐANG CHỜ</span>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<h4 class="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-2">Nhu cầu cụ thể:</h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-xs font-medium bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined text-sm text-blue-600">water_drop</span> 200 thùng nước sạch
+                                    </li>
+<li class="flex items-center gap-2 text-xs font-medium bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined text-sm text-blue-600">medical_services</span> 02 Nhân viên y tế
+                                    </li>
+</ul>
+</div>
+<div class="pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-black text-primary text-xs uppercase">NH</div>
+<div>
+<div class="text-xs font-bold text-on-surface">Nguyễn Văn Hùng</div>
+<div class="text-[11px] text-slate-500 font-medium">090xxxx123</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-[10px] font-medium text-slate-400">14 phút trước</span>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg font-black text-[11px] hover:opacity-90 transition-all">TIẾP NHẬN</button>
+</div>
+</div>
+<!-- Request Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Mã yêu cầu: #RQ-4035</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span class="font-bold text-on-surface text-sm">Phường 2, Quận 7</span>
+<a class="text-primary hover:opacity-70" href="#"><span class="material-symbols-outlined text-sm">map</span></a>
+</div>
+</div>
+<span class="bg-blue-100 text-blue-800 text-[10px] px-2 py-1 rounded font-black">ĐÃ TIẾP NHẬN</span>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<h4 class="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-2">Nhu cầu cụ thể:</h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-xs font-medium bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined text-sm text-blue-600">home_repair_service</span> Đội kỹ thuật sửa điện
+                                    </li>
+<li class="flex items-center gap-2 text-xs font-medium bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined text-sm text-blue-600">electric_bolt</span> 01 Máy phát điện dự phòng
+                                    </li>
+</ul>
+</div>
+<div class="pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-black text-primary text-xs uppercase">LA</div>
+<div>
+<div class="text-xs font-bold text-on-surface">Lê Thị An</div>
+<div class="text-[11px] text-slate-500 font-medium">091xxxx789</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-[10px] font-medium text-slate-400">32 phút trước</span>
+<button class="bg-surface-container-highest text-slate-400 px-4 py-2 rounded-lg font-black text-[11px] cursor-not-allowed">ĐANG XỬ LÝ</button>
+</div>
+</div>
+<!-- Request Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Mã yêu cầu: #RQ-4042</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span class="font-bold text-on-surface text-sm">Long Hựu, Long An</span>
+<a class="text-primary hover:opacity-70" href="#"><span class="material-symbols-outlined text-sm">map</span></a>
+</div>
+</div>
+<span class="bg-amber-100 text-amber-800 text-[10px] px-2 py-1 rounded font-black">ĐANG CHỜ</span>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<h4 class="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-2">Nhu cầu cụ thể:</h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-xs font-medium bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined text-sm text-blue-600">groups</span> 10 TNV bốc xếp hàng hóa
+                                    </li>
+<li class="flex items-center gap-2 text-xs font-medium bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined text-sm text-blue-600">fastfood</span> 50 suất cơm trưa
+                                    </li>
+</ul>
+</div>
+<div class="pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-black text-primary text-xs uppercase">TM</div>
+<div>
+<div class="text-xs font-bold text-on-surface">Trần Minh</div>
+<div class="text-[11px] text-slate-500 font-medium">098xxxx555</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-[10px] font-medium text-slate-400">1 giờ trước</span>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg font-black text-[11px] hover:opacity-90 transition-all">TIẾP NHẬN</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Dashboard Content Sections -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Active Teams & Transport -->
+<div class="col-span-12 xl:col-span-8 space-y-8">
+<!-- Volunteer Teams Section -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-black text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">groups_3</span>
+                                Đội Nhóm Tình Nguyện
+                            </h3>
+<button class="text-primary font-bold text-sm hover:underline">Xem Tất Cả</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Team Card 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow border border-outline-variant/10">
+<div class="w-12 h-12 bg-blue-50 flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-blue-700">medical_services</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h4 class="font-bold text-on-surface">Biệt Đội Cứu Trợ 07</h4>
+<span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded font-black">SẴN SÀNG</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-1">Chuyên môn: Sơ cứu, Điều phối hàng hóa</p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1 text-[11px] font-bold text-slate-500">
+<span class="material-symbols-outlined text-sm">person</span> 45 TNV
+                                        </div>
+<div class="flex items-center gap-1 text-[11px] font-bold text-slate-500">
+<span class="material-symbols-outlined text-sm">location_on</span> Quận 7, TP.HCM
+                                        </div>
+</div>
+</div>
+</div>
+<!-- Team Card 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow border border-outline-variant/10">
+<div class="w-12 h-12 bg-blue-50 flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-blue-700">handyman</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h4 class="font-bold text-on-surface">Nhóm Kỹ Thuật Phản Ứng Nhanh</h4>
+<span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded font-black">ĐANG LÀM NHIỆM VỤ</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-1">Chuyên môn: Sửa chữa điện, Thông tin liên lạc</p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1 text-[11px] font-bold text-slate-500">
+<span class="material-symbols-outlined text-sm">person</span> 12 TNV
+                                        </div>
+<div class="flex items-center gap-1 text-[11px] font-bold text-slate-500">
+<span class="material-symbols-outlined text-sm">location_on</span> Quận 1, TP.HCM
+                                        </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Transport & Logistics -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-black text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+                                Đơn Vị Vận Chuyển &amp; Tiếp Tế
+                            </h3>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant/10">
+<tr>
+<th class="px-6 py-4 font-label text-[10px] font-black uppercase tracking-widest text-slate-500">Nhà Xe / Đơn Vị</th>
+<th class="px-6 py-4 font-label text-[10px] font-black uppercase tracking-widest text-slate-500">Loại Phương Tiện</th>
+<th class="px-6 py-4 font-label text-[10px] font-black uppercase tracking-widest text-slate-500">Năng Lực</th>
+<th class="px-6 py-4 font-label text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Hành Động</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="font-bold text-on-surface text-sm">Logistics Toàn Cầu</div>
+<div class="text-[11px] text-slate-500">Khu vực: Liên tỉnh</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-container rounded text-[11px] font-bold">Xe tải 10 Tấn (x4)</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[75%]"></div>
+</div>
+<div class="text-[10px] mt-1 font-bold">75% công suất hiện tại</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary-container font-black text-xs px-4 py-2 border border-primary-container/20 rounded-lg hover:bg-primary-container hover:text-white transition-all">Điều Động</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="font-bold text-on-surface text-sm">Hợp Tác Xã Vận Tải 03</div>
+<div class="text-[11px] text-slate-500">Khu vực: Nội thành</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-container rounded text-[11px] font-bold">Xe Bán Tải (x12)</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[30%]"></div>
+</div>
+<div class="text-[10px] mt-1 font-bold">30% công suất hiện tại</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary-container font-black text-xs px-4 py-2 border border-primary-container/20 rounded-lg hover:bg-primary-container hover:text-white transition-all">Điều Động</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column: Live Matching & Support Points -->
+<div class="col-span-12 xl:col-span-4 space-y-8">
+<!-- Support Points (Eat/Sleep) -->
+<section>
+<h3 class="text-lg font-black text-on-surface-variant mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">night_shelter</span>
+                            Điểm Hỗ Trợ Ăn Nghỉ
+                        </h3>
+<div class="space-y-4">
+<!-- Support Item 1 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex gap-4 border border-outline-variant/10">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Modern indoor community center hall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFPyWcZ3qk9mhV0zyWjXq0haV-NWFPpLnL1CnTkzbqxrLU5PmClbDo8aA8k23-kcChxxgrmScXoD6B10fftbBZ9pq8FJAVMNb8EKC5Y-77-1sS-BmNd3jL7kn5CcwAZeFFqaSkuaL3QXdh1FMZWf14XTgINgoPssx635bnEwxkfa5v8xkCIpZIzAEAho5A7eb51ei70zumFYZ31NblqnB0ps-9xqAa-oOupZpabTB57fIs3hY_CXIUIWNGFF0hSEFpkyT0ZZ0kBLLF"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-sm">Trường THPT Hùng Vương</h4>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[10px] font-bold text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">bed</span> 50 Chỗ Trống
+                                        </span>
+<span class="text-[10px] font-bold text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">restaurant</span> Đang phục vụ
+                                        </span>
+</div>
+<div class="mt-2 text-[10px] text-slate-400 italic">Mở cửa 24/7. Hỗ trợ y tế tại chỗ.</div>
+</div>
+</div>
+<!-- Support Item 2 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex gap-4 border border-outline-variant/10">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Interior of a large professional catering kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKtejbxVpioDbS0NhxQFpDWm4mx-9Y1uwY0e6k0sHEb819lrvJZ3rtGc1WkDXQI1YcQ_r_y7eB3jRz4J17lwdTFz5oXKVUEMTEoAH4fw9cb0Dw0tS-zg4yGkx4jD2EYJ0uAPdoOar4gDJ_SQi78yqEHseowmXHxoreUA1Ts0L3bpMRaPlkeXjHnyG0P2VTVHQO6tIgrOD7rNo4pM1fD0YxrVSrqdPH-evAgAblXulMrdMYamoZpXBLmBmjQz4KIts62EdN_D5eLBO0"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-sm">Nhà Văn Hóa Phụ Nữ</h4>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[10px] font-bold text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">bed</span> Hết chỗ
+                                        </span>
+<span class="text-[10px] font-bold text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">restaurant</span> Bữa trưa 11:30
+                                        </span>
+</div>
+<div class="mt-2 text-[10px] text-slate-400 italic">Hiện chỉ tiếp nhận cứu trợ thực phẩm.</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-4 border-2 border-dashed border-outline-variant/30 rounded-xl text-slate-400 font-bold text-xs hover:border-primary/50 hover:text-primary transition-all">
+                            + Thêm Điểm Hỗ Trợ Mới
+                        </button>
+</section>
+</div>
+</div>
+<!-- Map View Placeholder -->
+<div class="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-sm group border border-outline-variant/10">
+<div class="absolute inset-0 bg-slate-200">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="Detailed city map view of Ho Chi Minh City" data-location="Ho Chi Minh City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL1dyA2kX6D6vSiZ3mm6sY-h6Mferovne-za7OzvcHw2UxwzXUbdlK8Pzhgt-ri2GGVr6v-j7CqTGYw4gOgMlFKaPfMaYDr6-qcVoqwW_TT5Yr83qgSNDI3QhYAIQjcybuPi4WIbtcaYNPfBIMJskZV2cmcEFtONxHgV4JNdf5yUQUm0z5JK3JHeiPAidkVhFDwnE-m3HJQcAQl8lAcW9zUfgGN_YKqiC-j9hqfxROxjYFHkTGMwKHsDsfA2TUuoTZTYULOpnJBG-T"/>
+</div>
+<!-- Glassmorphism Overlays -->
+<div class="absolute top-6 left-6 glass-panel p-4 rounded-xl border border-white/40 shadow-xl max-w-xs">
+<h5 class="text-xs font-black uppercase tracking-widest text-primary mb-3">Lớp Phủ Bản Đồ Trực Tuyến</h5>
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary pulse shadow-sm"></span>
+<span class="text-xs font-bold">24 Đội Đang Hoạt Động</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="text-xs font-bold">5 Nhu Cầu Ưu Tiên Cao</span>
+</div>
+</div>
+</div>
+<!-- Floating Map Marker Sample -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="relative">
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-white px-3 py-1.5 rounded-lg shadow-xl text-[10px] font-black whitespace-nowrap border border-primary/20">
+                            TRẠM CỨU TRỢ #01
+                            <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45"></div>
+</div>
+<div class="w-8 h-8 command-gradient rounded-full flex items-center justify-center border-2 border-white shadow-lg animate-bounce">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+<!-- Controls -->
+<div class="absolute bottom-6 right-6 flex flex-col gap-2">
+<button class="w-10 h-10 bg-white rounded-lg shadow-lg flex items-center justify-center text-slate-600 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 bg-white rounded-lg shadow-lg flex items-center justify-center text-slate-600 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for Global Actions -->
+<button class="fixed bottom-8 right-8 w-16 h-16 command-gradient rounded-full text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">add</span>
+<div class="absolute bottom-20 right-0 bg-white px-4 py-2 rounded-xl shadow-xl text-on-surface text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Gửi Yêu Cầu Hỗ Trợ Mới
+        </div>
+</button>
+</body></html>

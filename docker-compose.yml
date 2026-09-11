@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: rescue-postgres
+    environment:
+      POSTGRES_DB: rescue_coordination
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: rescue-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  valhalla:
+    image: ghcr.io/gis-ops/docker-valhalla/valhalla:3.5.1
+    container_name: rescue-valhalla
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./valhalla-data:/custom_files
+    environment:
+      - server_threads=4
+      - use_tiles_ignore_pbf=True
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+volumes:
+  postgres_data:
+  redis_data:

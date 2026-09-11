@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cổng Thông tin &amp; Hướng dẫn - Resilient Horizon</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;family=Public_Sans:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#cbe7f5",
+                        "primary-fixed": "#d7e2ff",
+                        "background": "#f8f9fa",
+                        "secondary": "#48626e",
+                        "surface-variant": "#e1e3e4",
+                        "on-surface-variant": "#424752",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-container": "#b1121b",
+                        "tertiary": "#88000e",
+                        "on-primary-fixed": "#001a40",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-tint": "#115cb9",
+                        "on-surface": "#191c1d",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3ac",
+                        "surface-container": "#edeeef",
+                        "surface-dim": "#d9dadb",
+                        "surface": "#f8f9fa",
+                        "on-primary-fixed-variant": "#004491",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "secondary-fixed-dim": "#afcbd8",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#930010",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#0056b3",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed": "#cbe7f5",
+                        "on-background": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#acc7ff",
+                        "on-tertiary-container": "#ffc0ba",
+                        "on-secondary-fixed-variant": "#304a55",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#acc7ff",
+                        "primary": "#003f87",
+                        "on-tertiary-fixed": "#410003",
+                        "tertiary-fixed": "#ffdad6",
+                        "on-secondary-container": "#4e6874",
+                        "on-secondary-fixed": "#021f29",
+                        "on-primary-container": "#bbd0ff",
+                        "outline-variant": "#c2c6d4",
+                        "outline": "#727784"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Public Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #003f87 0%, #0056b3 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- SideNavBar (Shared Component) -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col h-screen border-r-0 shadow-xl shadow-slate-200/50 z-50">
+<div class="p-6">
+<div class="text-lg font-extrabold uppercase tracking-widest text-blue-900 dark:text-white mb-1">Resilient Horizon</div>
+<div class="text-xs font-bold uppercase tracking-wider text-slate-500">Chỉ huy Khẩn cấp</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-200/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-['Inter'] font-medium tracking-tight text-sm">Bản đồ Điều phối</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-200/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-['Inter'] font-medium tracking-tight text-sm">Hậu cần Nguồn lực</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-200/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-['Inter'] font-medium tracking-tight text-sm">Trung tâm Tình nguyện</span>
+</a>
+<!-- Active Tab: Safety Portal (Portal & Guides) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-blue-700 dark:text-blue-300 border-r-4 border-blue-700 dark:border-blue-400 bg-white dark:bg-slate-800 transition-transform translate-x-1" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="font-['Inter'] font-medium tracking-tight text-sm">Cổng An toàn</span>
+</a>
+</nav>
+<div class="p-4 mt-auto space-y-2 bg-slate-100 dark:bg-slate-800/50">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-xl font-bold text-sm hero-gradient active:scale-95 transition-transform">
+                Báo cáo Khẩn cấp
+            </button>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-lg flex justify-between items-center px-8 w-full shadow-sm">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-blue-900 dark:text-blue-100">Trung tâm Điều hành</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-['Public_Sans'] text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-700 transition-all" href="#">Cảnh báo Hiện tại</a>
+<a class="font-['Public_Sans'] text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-700 transition-all" href="#">Bản đồ Triển khai</a>
+<a class="font-['Public_Sans'] text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-700 transition-all" href="#">Kho hàng</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-blue-700 cursor-pointer hover:opacity-80 transition-all">notifications_active</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<img alt="Hồ sơ Điều phối viên" class="w-8 h-8 rounded-full border border-outline-variant hover:opacity-80 active:scale-95 cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcZEMkGpM9jyeeiS6kQySp4gdkhpnjegL-AaluinnQE9rYOrpHhL-NpI8RhSe9IJaysF0mgHdz9aEYBugDok21S-tiJP3sAFPb9CarVlJmpGUEqqha5vy8D3_t4G7sruALGcnfHWw9MfeVCgPS6lqJqHGASxlJRcK2xNruq_8LmOco41RypZkMMRc8ZYvFkO8ahvDrWjlpXRkXA-qhhDKYNuo0LNT0f1HtgKgGpAwiIarSq4pBZ-SLcdURPqfr1_YKgWPeIuQ0GYIp"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen">
+<div class="max-w-7xl mx-auto px-8 py-12">
+<!-- Hero Header -->
+<div class="mb-16">
+<h1 class="text-5xl font-extrabold text-on-surface mb-4 tracking-tight">Cổng Thông tin &amp; Hướng dẫn</h1>
+<p class="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                    Nguồn tài liệu chuẩn hóa dành cho ứng phó khẩn cấp. Vui lòng chọn vai trò của bạn để truy cập các hướng dẫn và quy trình an toàn phù hợp nhất.
+                </p>
+</div>
+<!-- Bento Grid Section Navigation -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+<!-- Card: Victims -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low p-8 transition-all hover:bg-surface-container-lowest hover:shadow-xl hover:shadow-slate-200/50">
+<div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Dành cho Nạn nhân</h3>
+<p class="text-on-surface-variant mb-6 text-sm">Hướng dẫn sinh tồn, sơ cứu tại chỗ và các bước liên hệ cứu hộ khẩn cấp trong vùng lũ.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-blue-600 text-lg">check_circle</span> Cách xử lý khi gặp lũ</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-blue-600 text-lg">check_circle</span> Sơ cứu vết thương cơ bản</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-blue-600 text-lg">check_circle</span> Vệ sinh &amp; Nước sạch</li>
+</ul>
+<a class="inline-flex items-center gap-2 text-primary font-bold text-sm tracking-wide uppercase hover:underline" href="#nan-nhan">Xem chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Card: Volunteers -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low p-8 transition-all hover:bg-surface-container-lowest hover:shadow-xl hover:shadow-slate-200/50">
+<div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-secondary-fixed text-secondary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Dành cho Tình nguyện viên</h3>
+<p class="text-on-surface-variant mb-6 text-sm">Quy tắc an toàn khi tham gia cứu trợ, kỹ thuật di chuyển trong nước lũ và phân phối nhu yếu phẩm.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span> Kỹ thuật cứu hộ xuồng/bè</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span> Quản lý đám đông &amp; Tâm lý</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span> Báo cáo hiện trường</li>
+</ul>
+<a class="inline-flex items-center gap-2 text-secondary font-bold text-sm tracking-wide uppercase hover:underline" href="#tinh-nguyen">Xem chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Card: Officers -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low p-8 transition-all hover:bg-surface-container-lowest hover:shadow-xl hover:shadow-slate-200/50">
+<div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-tertiary-fixed text-tertiary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Dành cho Cán bộ điều phối</h3>
+<p class="text-on-surface-variant mb-6 text-sm">Hệ thống hóa thông tin, điều phối nguồn lực liên tỉnh và quản lý dữ liệu khẩn cấp.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-tertiary text-lg">check_circle</span> Quy trình báo cáo Tổng cục</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-tertiary text-lg">check_circle</span> Phân bổ nguồn lực trên Bản đồ</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-tertiary text-lg">check_circle</span> Giao thức liên lạc vệ tinh</li>
+</ul>
+<a class="inline-flex items-center gap-2 text-tertiary font-bold text-sm tracking-wide uppercase hover:underline" href="#can-bo">Xem chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+<!-- Content Section: Nạn Nhân -->
+<section class="mb-32" id="nan-nhan">
+<div class="flex items-center gap-4 mb-10">
+<h2 class="text-3xl font-black text-primary uppercase tracking-tighter">01. Hướng dẫn cho Nạn nhân</h2>
+<div class="h-px flex-1 bg-outline-variant opacity-30"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Instruction Card 1: Sơ cứu -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10">
+<img alt="Cận cảnh bộ sơ cứu với vật tư y tế như băng gạc và thuốc sát trùng trên bề mặt sạch với ánh sáng chuyên nghiệp" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB28Mjby_fSQK0oJs0VfDXrCL4ySAWoBfWH4MOtBGk9_LaPJtDEov74bpvvmt7fivYPKOYAlrlBs_8YISIyKaQrY3Jtwm2-vC1e0fv-YorACJX2TgWr6PIJkOqqBiC1LKcpFi08tdP41XzReCQpAaUt99lFjFCVX49QGVfviyXIfV3czmINhjS_0ZZoLCwT9vH0zD-UIcRweduMA0m3apfKfFRX9N4S1LuIhtI2GlpsF740knDl6OV-ldMTBYW7uhTxE1pTMC9vnMqh"/>
+<div class="p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="font-['Public_Sans'] text-xs font-black uppercase tracking-widest text-primary">Sơ cứu vết thương &amp; Đuối nước</span>
+</div>
+<h4 class="text-xl font-bold mb-6">Danh sách hành động nhanh:</h4>
+<div class="space-y-4">
+<label class="flex items-start gap-3 p-4 bg-surface-container-low rounded-xl cursor-pointer hover:bg-primary-fixed/30 transition-colors">
+<input class="mt-1 rounded-sm border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium">Kiểm tra đường thở và nhịp tim của nạn nhân ngay lập tức.</span>
+</label>
+<label class="flex items-start gap-3 p-4 bg-surface-container-low rounded-xl cursor-pointer hover:bg-primary-fixed/30 transition-colors">
+<input class="mt-1 rounded-sm border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium">Làm sạch vết thương hở bằng nước sạch (nếu có) hoặc nước đóng chai.</span>
+</label>
+<label class="flex items-start gap-3 p-4 bg-surface-container-low rounded-xl cursor-pointer hover:bg-primary-fixed/30 transition-colors">
+<input class="mt-1 rounded-sm border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium">Giữ ấm cơ thể nạn nhân bằng chăn khô hoặc áo khoác.</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Instruction Card 2: Vệ sinh -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10">
+<img alt="Nước đóng chai và viên lọc nước trên bàn gỗ với ánh nắng ban mai chiếu qua cửa sổ" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKZj6IqHoA3fZZE0GznFMCfXUaVWOH4xlXAgmFgH46U6Jbg22OOwTLC9CPE__bWdCaaOkQ644Zxa1xKbJbHKiNj3B4RunvmKfsyBp7ZO4wte3qOZ0ZG9DCOcAhAqIKerm3SA6qKT9KG37yqi6cRcHEHQ2jlRsnrNWBRzcJpIYIX51raypkBBcZPK6ripQHOJTCZPGXBcEA7L6ActoptrqXfBTTZnDCTg_EZHIcOV7SHWGz3MTy9N46YHuExCzkzqQS6zLr42o7VLjq"/>
+<div class="p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">clean_hands</span>
+<span class="font-['Public_Sans'] text-xs font-black uppercase tracking-widest text-primary">Vệ sinh &amp; Nguồn nước</span>
+</div>
+<h4 class="text-xl font-bold mb-6">Hướng dẫn an toàn thực phẩm:</h4>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="text-2xl font-black text-primary-container">01</div>
+<p class="text-sm text-on-surface-variant">Tuyệt đối không sử dụng nước lũ để nấu ăn hoặc vệ sinh cá nhân khi chưa qua xử lý.</p>
+</div>
+<div class="flex gap-4">
+<div class="text-2xl font-black text-primary-container">02</div>
+<p class="text-sm text-on-surface-variant">Sử dụng viên khử khuẩn Cloramin B nếu không có nước đóng chai sạch.</p>
+</div>
+<div class="flex gap-4">
+<div class="text-2xl font-black text-primary-container">03</div>
+<p class="text-sm text-on-surface-variant">Ăn chín, uống sôi và bảo quản thực phẩm ở nơi cao ráo, tránh ẩm ướt.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Section: Tình Nguyện Viên -->
+<section class="mb-32" id="tinh-nguyen">
+<div class="flex items-center gap-4 mb-10">
+<h2 class="text-3xl font-black text-secondary uppercase tracking-tighter">02. Hướng dẫn cho Tình nguyện viên</h2>
+<div class="h-px flex-1 bg-outline-variant opacity-30"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Asymmetric Layout: Large Visual Card -->
+<div class="lg:col-span-2 bg-secondary-fixed/20 rounded-xl p-10 flex flex-col md:flex-row gap-10 items-center border border-secondary-fixed/50">
+<div class="flex-1">
+<span class="font-['Public_Sans'] text-xs font-black uppercase tracking-widest text-secondary mb-4 block">Kỹ thuật hiện trường</span>
+<h4 class="text-3xl font-bold mb-6 leading-tight text-on-secondary-fixed">Quy trình vận hành xuồng cứu hộ an toàn</h4>
+<p class="text-on-secondary-fixed-variant mb-8 leading-relaxed">Khi tiếp cận vùng lũ sâu, việc vận hành xuồng yêu cầu kỹ thuật đặc biệt để tránh lật và hư hỏng động cơ do rác thải quấn vào chân vịt.</p>
+<button class="px-6 py-3 bg-secondary text-on-secondary rounded-full font-bold text-sm tracking-wide transition-all hover:shadow-lg">TẢI TÀI LIỆU PDF</button>
+</div>
+<div class="w-full md:w-1/3 aspect-square rounded-xl overflow-hidden shadow-2xl">
+<img alt="Một chiếc xuồng tìm kiếm cứu hộ màu cam trên dòng sông yên bình lúc bình minh, ánh sáng điện ảnh chuyên nghiệp" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-FC9Tp2-8mnVKph2yGKYeRcG5pUTvhydVOtsIzjfsxX8WztJ7xq_KK3rnE5L6Ppox9MSrX8DNwM8RMDth3bP3Q9a9aZrf7Yq8LRDPqJ0Hs2Y_az4RyJ-B7baRjvHFBVQIKrA0bI4DSStK3DljUSCfjPXf_DpRhPZmRIDzPFJ57T0ZprgRpXVYNiqYCjxAL96_rHFuuF_noVzEyW8DBwq54F1aJgCDoSWD86WUQl7HAqor5mAV5aq97x1HbUd_e5tdmRnC5wmq673_"/>
+</div>
+</div>
+<!-- Side Card: Safety Rules -->
+<div class="bg-surface-container-high rounded-xl p-8 border border-outline-variant/10">
+<span class="material-symbols-outlined text-error text-4xl mb-6">warning</span>
+<h4 class="text-xl font-bold mb-4">Quy tắc "3 KHÔNG"</h4>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-error">close</span>
+<div>
+<p class="font-bold text-sm">KHÔNG tự ý tách đoàn</p>
+<p class="text-xs text-on-surface-variant">Luôn di chuyển theo nhóm ít nhất 3 người.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-error">close</span>
+<div>
+<p class="font-bold text-sm">KHÔNG lội nước nếu không biết độ sâu</p>
+<p class="text-xs text-on-surface-variant">Sử dụng gậy đo độ sâu trước khi bước.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-error">close</span>
+<div>
+<p class="font-bold text-sm">KHÔNG bỏ qua thiết bị bảo hộ</p>
+<p class="text-xs text-on-surface-variant">Luôn mặc áo phao và đeo găng tay bảo hộ.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Content Section: Cán bộ Điều phối -->
+<section class="mb-20" id="can-bo">
+<div class="flex items-center gap-4 mb-10">
+<h2 class="text-3xl font-black text-tertiary uppercase tracking-tighter">03. Quy trình cho Cán bộ điều phối</h2>
+<div class="h-px flex-1 bg-outline-variant opacity-30"></div>
+</div>
+<!-- Step-by-Step Reporting Guide -->
+<div class="bg-surface-container-lowest rounded-2xl p-12 shadow-2xl shadow-slate-200/50 border border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="relative">
+<div class="h-12 w-12 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-black mb-6">1</div>
+<h5 class="font-bold text-lg mb-2">Thu thập Dữ liệu</h5>
+<p class="text-sm text-on-surface-variant">Tiếp nhận thông tin từ các trạm vệ tinh và báo cáo hiện trường của tình nguyện viên.</p>
+<div class="hidden md:block absolute top-6 left-12 w-full h-px bg-outline-variant"></div>
+</div>
+<div class="relative">
+<div class="h-12 w-12 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-black mb-6">2</div>
+<h5 class="font-bold text-lg mb-2">Xác minh Độ tin cậy</h5>
+<p class="text-sm text-on-surface-variant">Sử dụng AI phân tích hình ảnh và đối chiếu tọa độ GPS để lọc bỏ tin giả.</p>
+<div class="hidden md:block absolute top-6 left-12 w-full h-px bg-outline-variant"></div>
+</div>
+<div class="relative">
+<div class="h-12 w-12 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-black mb-6">3</div>
+<h5 class="font-bold text-lg mb-2">Phân bổ Nguồn lực</h5>
+<p class="text-sm text-on-surface-variant">Dựa trên mức độ khẩn cấp, điều động xuồng cứu hộ và nhu yếu phẩm đến các điểm nóng.</p>
+<div class="hidden md:block absolute top-6 left-12 w-full h-px bg-outline-variant"></div>
+</div>
+<div class="relative">
+<div class="h-12 w-12 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-black mb-6">4</div>
+<h5 class="font-bold text-lg mb-2">Báo cáo Tổng hợp</h5>
+<p class="text-sm text-on-surface-variant">Xuất file dữ liệu và gửi báo cáo trực tiếp lên hệ thống Chỉ huy Trung ương mỗi 2 giờ.</p>
+</div>
+</div>
+<div class="mt-16 pt-16 border-t border-outline-variant/10 flex flex-col lg:flex-row gap-12 items-center">
+<div class="lg:w-1/2">
+<h4 class="text-2xl font-bold mb-6">Mẫu Báo cáo Sự cố Chuẩn</h4>
+<div class="space-y-4 p-6 bg-surface-container-low rounded-xl font-mono text-xs">
+<p class="text-tertiary font-bold">// Bao_cao_Su_co_V1.0</p>
+<p><span class="text-slate-400">Thời gian:</span> 2023-11-20T14:30:00Z</p>
+<p><span class="text-slate-400">ID_Vị_trí:</span> VN_QUANG_BINH_042</p>
+<p><span class="text-slate-400">Mức độ:</span> KHẨN CẤP</p>
+<p><span class="text-slate-400">Nhu cầu:</span> THUỐC_MEN, NƯỚC_SẠCH, XUỒNG</p>
+<p><span class="text-slate-400">Trạng thái:</span> ĐANG TRIỂN KHAI</p>
+</div>
+</div>
+<div class="lg:w-1/2 grid grid-cols-2 gap-4">
+<div class="p-6 bg-surface-container-high rounded-xl text-center">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-2">description</span>
+<p class="font-bold text-xs">BIỂU MẪU A1</p>
+<p class="text-[10px] text-on-surface-variant">Báo cáo thiệt hại tài sản</p>
+</div>
+<div class="p-6 bg-surface-container-high rounded-xl text-center">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-2">person_search</span>
+<p class="font-bold text-xs">BIỂU MẪU B2</p>
+<p class="text-[10px] text-on-surface-variant">Khai báo người mất tích</p>
+</div>
+<div class="p-6 bg-surface-container-high rounded-xl text-center">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-2">local_hospital</span>
+<p class="font-bold text-xs">BIỂU MẪU C3</p>
+<p class="text-[10px] text-on-surface-variant">Danh sách nhu cầu y tế</p>
+</div>
+<div class="p-6 bg-surface-container-high rounded-xl text-center">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-2">trending_up</span>
+<p class="font-bold text-xs">BIỂU MẪU D4</p>
+<p class="text-[10px] text-on-surface-variant">Theo dõi mực nước lũ</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Button - Only for Emergencies -->
+<button class="fixed bottom-8 right-8 h-16 w-16 rounded-full bg-tertiary text-on-tertiary shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 animate-pulse">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">sos</span>
+</button>
+</body></html>

@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS "Assignment";
+DROP TABLE IF EXISTS "Vehicle";
+DROP TABLE IF EXISTS "Partner";
+
+DROP TYPE IF EXISTS "AssignmentStatus";
+DROP TYPE IF EXISTS "VehicleStatus";
+DROP TYPE IF EXISTS "VehicleType";
+DROP TYPE IF EXISTS "PartnerType";

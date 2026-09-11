@@ -1,0 +1,14 @@
+{
+  "name": "rescue-coordination",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev": "pnpm --filter @rescue/web dev",
+    "dev:web": "pnpm --filter @rescue/web dev",
+    "dev:api": "pnpm --filter @rescue/api dev",
+    "build": "pnpm -r --if-present build",
+    "lint": "pnpm -r --if-present lint",
+    "typecheck": "pnpm -r typecheck"
+  }
+}

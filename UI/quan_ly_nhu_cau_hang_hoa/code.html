@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Public+Sans:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#cbe7f5",
+                        "primary-fixed": "#d7e2ff",
+                        "background": "#f8f9fa",
+                        "secondary": "#48626e",
+                        "surface-variant": "#e1e3e4",
+                        "on-surface-variant": "#424752",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-container": "#b1121b",
+                        "tertiary": "#88000e",
+                        "on-primary-fixed": "#001a40",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-tint": "#115cb9",
+                        "on-surface": "#191c1d",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3ac",
+                        "surface-container": "#edeeef",
+                        "surface-dim": "#d9dadb",
+                        "surface": "#f8f9fa",
+                        "on-primary-fixed-variant": "#004491",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "secondary-fixed-dim": "#afcbd8",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#930010",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#0056b3",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed": "#cbe7f5",
+                        "on-background": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#acc7ff",
+                        "on-tertiary-container": "#ffc0ba",
+                        "on-secondary-fixed-variant": "#304a55",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#acc7ff",
+                        "primary": "#003f87",
+                        "on-tertiary-fixed": "#410003",
+                        "tertiary-fixed": "#ffdad6",
+                        "on-secondary-container": "#4e6874",
+                        "on-secondary-fixed": "#021f29",
+                        "on-primary-container": "#bbd0ff",
+                        "outline-variant": "#c2c6d4",
+                        "outline": "#727784"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Public Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .ambient-shadow {
+            box-shadow: 0 12px 32px -4px rgba(25, 28, 29, 0.08);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased">
+<!-- SideNavBar Shell -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col z-50">
+<div class="p-6">
+<div class="text-lg font-extrabold uppercase tracking-widest text-blue-900 dark:text-white mb-1">Resilient Horizon</div>
+<div class="font-['Inter'] font-medium tracking-tight text-xs text-slate-500 uppercase">Chỉ Huy Khẩn Cấp</div>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl group" href="#">
+<span class="material-symbols-outlined mr-3">map</span>
+<span class="font-['Inter'] font-medium tracking-tight text-sm">Bản Đồ Điều Phối</span>
+</a>
+<a class="flex items-center px-4 py-3 text-blue-700 dark:text-blue-300 border-r-4 border-blue-700 dark:border-blue-400 bg-white dark:bg-slate-800 transition-transform translate-x-1 rounded-l-xl" href="#">
+<span class="material-symbols-outlined mr-3">inventory_2</span>
+<span class="font-['Inter'] font-medium tracking-tight text-sm">Quản Lý Hàng Hóa</span>
+</a>
+<a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined mr-3">groups</span>
+<span class="font-['Inter'] font-medium tracking-tight text-sm">Đội Nhóm Tình Nguyện</span>
+</a>
+<a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined mr-3">info</span>
+<span class="font-['Inter'] font-medium tracking-tight text-sm">Cổng An Toàn</span>
+</a>
+</nav>
+<div class="p-4 mt-auto space-y-4">
+<button class="w-full py-3 px-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-bold text-sm shadow-lg shadow-blue-900/20 active:scale-95 transition-all">
+                Báo Cáo Khẩn Cấp
+            </button>
+<div class="pt-4 border-t border-slate-200/50">
+</div>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-white/80 backdrop-blur-lg flex justify-between items-center px-8 w-full">
+<div class="flex items-center gap-8">
+<h1 class="text-xl font-black text-blue-900 tracking-tight">Trung Tâm Điều Hành</h1>
+<nav class="hidden lg:flex gap-6">
+<a class="font-['Public_Sans'] text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-700 transition-all" href="#">Cảnh Báo Hoạt Động</a>
+<a class="font-['Public_Sans'] text-xs font-bold uppercase tracking-wider text-blue-800 border-b-2 border-blue-800 pb-1" href="#">Bản Đồ Triển Khai</a>
+<a class="font-['Public_Sans'] text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-700 transition-all" href="#">Kho Hàng</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined text-slate-500 hover:opacity-80 active:scale-95 cursor-pointer">notifications_active</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Điều Phối Viên</p>
+<p class="text-sm font-bold text-blue-900">TS. Nguyễn Văn A</p>
+</div>
+<img alt="Hồ sơ điều phối viên" class="w-10 h-10 rounded-full border-2 border-primary/10" data-alt="professional portrait of a male medical coordinator in a white coat with a friendly and focused expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZsPu4unEWhRSAkywOx3O9dT5rUaixyu4xF2V5yP9U2bnEnOjJ9ke0uP5opRosAZOS0WBgBRp4QH8SyDgh9VrQMIqKoZSQ1zb_oCnmjF44TfFwl2ddkT1nGyqkj8BgvEx5txg9aHZlwDthtF6PVx2s2RqJoQIp-XrPCLIPMRjx8_Zs2jR6mJpYjVbkYMNRhFh1jM8uVezmeTt03TENqSao6u8ZaiG3Zo1kFnz1c_WS9GxV8Ojo-ZKJ-6iq91_Pl6a9MWHJ5cylsNuS"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 mt-16 p-8 min-h-screen">
+<!-- Header Section with Stats -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-3xl font-extrabold text-blue-900 tracking-tighter mb-2">Quản lý Nhu cầu &amp; Hàng hóa</h2>
+<p class="text-slate-500 font-medium">Giám sát và điều phối nguồn lực cứu trợ thời gian thực</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-5 py-3 bg-surface-container-high text-on-surface font-bold text-sm rounded-xl hover:bg-slate-200 transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                    Xuất Báo Cáo
+                </button>
+<button class="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-900/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">local_shipping</span>
+                    Phân bổ nguồn lực
+                </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-low p-4 rounded-xl mb-6 flex flex-wrap gap-4 items-center">
+<div class="flex-1 min-w-[240px] relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-slate-400" placeholder="Tìm kiếm điểm cứu trợ hoặc nguồn kiểm chứng..." type="text"/>
+</div>
+<select class="bg-surface-container-lowest border-none rounded-lg text-xs font-bold uppercase tracking-wider px-4 py-2.5 text-slate-600 focus:ring-2 focus:ring-primary/20">
+<option>Loại nhu cầu: Tất cả</option>
+<option>Nhân lực</option>
+<option>Thực phẩm</option>
+<option>Thuốc men</option>
+</select>
+<select class="bg-surface-container-lowest border-none rounded-lg text-xs font-bold uppercase tracking-wider px-4 py-2.5 text-slate-600 focus:ring-2 focus:ring-primary/20">
+<option>Khẩn cấp: Tất cả</option>
+<option>Cực kỳ khẩn cấp</option>
+<option>Cao</option>
+<option>Trung bình</option>
+</select>
+<button class="p-2.5 bg-surface-container-lowest rounded-lg text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Table Container -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden ambient-shadow">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50">
+<th class="px-6 py-4 font-['Public_Sans'] text-[10px] font-black uppercase tracking-[0.1em] text-slate-400 border-none">Tên điểm (Nguồn)</th>
+<th class="px-6 py-4 font-['Public_Sans'] text-[10px] font-black uppercase tracking-[0.1em] text-slate-400 border-none">Nhu cầu cứu trợ</th>
+<th class="px-6 py-4 font-['Public_Sans'] text-[10px] font-black uppercase tracking-[0.1em] text-slate-400 border-none">Số lượng</th>
+<th class="px-6 py-4 font-['Public_Sans'] text-[10px] font-black uppercase tracking-[0.1em] text-slate-400 border-none">Mức độ khẩn cấp</th>
+<th class="px-6 py-4 font-['Public_Sans'] text-[10px] font-black uppercase tracking-[0.1em] text-slate-400 border-none">Trạng thái</th>
+<th class="px-6 py-4 font-['Public_Sans'] text-[10px] font-black uppercase tracking-[0.1em] text-slate-400 border-none text-right">Thao tác</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-blue-900">Thôn An Xá, Quảng Bình</span>
+<span class="text-[11px] font-medium text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-green-500" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                        Hội Chữ Thập Đỏ
+                                    </span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600">
+<span class="material-symbols-outlined text-lg">restaurant</span>
+</div>
+<span class="text-sm font-semibold text-slate-700">Thực phẩm &amp; Nước sạch</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm font-bold text-slate-900 tracking-tight">500 suất / ngày</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-tertiary-container text-on-tertiary-container">Cực kỳ khẩn cấp</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-error font-bold text-[11px] uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                                    Chưa tiếp cận
+                                </div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-blue-600 hover:text-blue-800 font-bold text-xs uppercase tracking-widest">Chi tiết</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-blue-900">Trạm Y tế Lệ Thủy</span>
+<span class="text-[11px] font-medium text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-blue-400" style="font-variation-settings: 'FILL' 1;">info</span>
+                                        Chính quyền địa phương
+                                    </span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center text-red-600">
+<span class="material-symbols-outlined text-lg">medical_services</span>
+</div>
+<span class="text-sm font-semibold text-slate-700">Thuốc men &amp; Vật tư</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm font-bold text-slate-900 tracking-tight">12 kiện sơ cứu</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-orange-100 text-orange-700">Cao</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-primary font-bold text-[11px] uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                                    Đang vận chuyển
+                                </div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-blue-600 hover:text-blue-800 font-bold text-xs uppercase tracking-widest">Chi tiết</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-blue-900">Khu tái định cư Nam Trà My</span>
+<span class="text-[11px] font-medium text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-green-500" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                        Đội nhóm tình nguyện
+                                    </span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined text-lg">person_raised_hand</span>
+</div>
+<span class="text-sm font-semibold text-slate-700">Nhân lực (Cứu hộ)</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm font-bold text-slate-900 tracking-tight">20 tình nguyện viên</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-yellow-100 text-yellow-700">Trung bình</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-green-600 font-bold text-[11px] uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                    Đã xử lý
+                                </div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-blue-600 hover:text-blue-800 font-bold text-xs uppercase tracking-widest">Chi tiết</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-blue-900">Điểm trường Tiểu học Ba Đồn</span>
+<span class="text-[11px] font-medium text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-green-500" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                        Hội Phụ Nữ
+                                    </span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
+<span class="material-symbols-outlined text-lg">checkroom</span>
+</div>
+<span class="text-sm font-semibold text-slate-700">Quần áo &amp; Chăn màn</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm font-bold text-slate-900 tracking-tight">100 bộ</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-slate-100 text-slate-500">Thấp</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-primary font-bold text-[11px] uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                                    Đang vận chuyển
+                                </div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-blue-600 hover:text-blue-800 font-bold text-xs uppercase tracking-widest">Chi tiết</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer Table -->
+<div class="px-6 py-4 bg-slate-50/50 flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">Hiển thị 4 trên tổng số 128 điểm cứu trợ</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:bg-white transition-all">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 font-bold text-xs hover:bg-white transition-all">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 font-bold text-xs hover:bg-white transition-all">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:bg-white transition-all">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Insights -->
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Resource Map Overview -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-2xl p-6 ambient-shadow min-h-[300px] flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-extrabold text-blue-900 tracking-tight">Bản đồ Phân bổ Khu vực</h3>
+<button class="text-xs font-bold text-primary uppercase tracking-widest">Toàn màn hình</button>
+</div>
+<div class="flex-1 rounded-xl relative overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover opacity-50 grayscale" data-alt="stylized geographic map of a coastal region with data overlays, heat maps showing high demand areas in soft blue and red tones" data-location="Quang Binh, Vietnam" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwQk3bEb0nWyEkQ7F812_74z2QszQaukol0rqTDAIFo_F4WTmDxK5CSAH6nqrNgD0ITzsKasn5PcWrlwW_LJafPeTo9PciM5c9ytmx98kZxPvvzCJcsO-y8ReeSdAtuapl749W1d7ibkS2fuVG8hniAxtZKlQ056Mqtndf74i3S9821DLNirdjXsg5LKjeBM-5vIzy00_Es4pBozRQ6U5qpQCxxR0nJqRxgI6GObCsIKeUInKNpBwzGUkc2VnQfL3c1bFNgj3I58vR"/>
+<!-- Fake Map Markers -->
+<div class="absolute top-1/4 left-1/3 group cursor-pointer">
+<div class="w-4 h-4 bg-tertiary rounded-full animate-ping absolute"></div>
+<div class="w-4 h-4 bg-tertiary rounded-full border-2 border-white relative"></div>
+</div>
+<div class="absolute bottom-1/3 right-1/4">
+<div class="w-4 h-4 bg-primary rounded-full border-2 border-white"></div>
+</div>
+<div class="absolute top-1/2 right-1/2">
+<div class="w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+</div>
+<!-- Map Legend Overlay -->
+<div class="absolute bottom-4 left-4 glass-panel p-3 rounded-lg border border-white/20 text-[10px] space-y-1">
+<div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-tertiary"></span> Khẩn cấp</div>
+<div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-primary"></span> Đang xử lý</div>
+<div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Hoàn tất</div>
+</div>
+</div>
+</div>
+<!-- Quick Action / Summary Panel -->
+<div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl p-6 text-white shadow-xl flex flex-col">
+<h3 class="text-lg font-extrabold mb-6 tracking-tight">Tóm lược Nguồn lực</h3>
+<div class="space-y-6 flex-1">
+<div class="flex justify-between items-center">
+<div>
+<p class="text-[10px] font-black uppercase tracking-widest text-blue-300">Tổng nhu cầu thực phẩm</p>
+<p class="text-2xl font-black">4,250 <span class="text-sm font-medium text-blue-200">suất</span></p>
+</div>
+<span class="material-symbols-outlined text-blue-400 opacity-50 text-3xl">volunteer_activism</span>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="text-[10px] font-black uppercase tracking-widest text-blue-300">Đội cứu hộ sẵn sàng</p>
+<p class="text-2xl font-black">18 <span class="text-sm font-medium text-blue-200">nhóm</span></p>
+</div>
+<span class="material-symbols-outlined text-blue-400 opacity-50 text-3xl">group</span>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="text-[10px] font-black uppercase tracking-widest text-blue-300">Hàng đang vận chuyển</p>
+<p class="text-2xl font-black">1.2 <span class="text-sm font-medium text-blue-200">tấn</span></p>
+</div>
+<span class="material-symbols-outlined text-blue-400 opacity-50 text-3xl">local_shipping</span>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-white/10">
+<p class="text-[10px] italic text-blue-300 mb-4">Cập nhật lúc: 14:32 - 15/10/2023</p>
+<button class="w-full py-3 bg-white text-blue-900 font-bold text-sm rounded-xl hover:bg-blue-50 transition-colors">
+                        Xem chi tiết tồn kho
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
